@@ -1,13 +1,22 @@
 import time
-from playsound import playsound
 import pyautogui
 import os
 import winsound
 from pynput import mouse, keyboard
 
 
-def beep():
+def beep_prepare():
+    frequency = 2000  # Set Frequency To 2500 Hertz
+    duration = 1000  # Set Duration To 1000 ms == 1 second
+    winsound.Beep(frequency, duration)
+
+def beep_start():
     frequency = 2500  # Set Frequency To 2500 Hertz
+    duration = 1000  # Set Duration To 1000 ms == 1 second
+    winsound.Beep(frequency, duration)
+
+def beep_end():
+    frequency = 500  # Set Frequency To 2500 Hertz
     duration = 1000  # Set Duration To 1000 ms == 1 second
     winsound.Beep(frequency, duration)
 
@@ -27,16 +36,16 @@ def press_button(image_path):
 
 
 def start_exercise():
-    beep()  # Notify the subject to prepare
-    time.sleep(2)  # Wait for 2 seconds
+    beep_prepare()  # Notify the subject to prepare
+    time.sleep(1)  # Wait for 2 seconds
     press_button("record_button.JPG")  # Start the recording
-    beep()  # Notify the subject that the recording has started
+    beep_start()  # Notify the subject that the recording has started
     time.sleep(6)
-    beep()  # Notify the subject that the recording has ended
+    beep_end()  # Notify the subject that the recording has ended
     press_button("confirm_button.JPG")
-    time.sleep(1)
+    time.sleep(1.5)
     press_button("save_button.JPG")
-    beep()  # notify subject that recording has been saved
+    
 
 
 # def on_click(x, y, button, pressed):
